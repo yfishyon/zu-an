@@ -6,6 +6,7 @@ let name = "";
 let res = {};
 let data1 = {};
 let data = "";
+let data2 = {}
 let zzss = 0;
 let url = "";
 let response = "";
@@ -57,7 +58,7 @@ export class book extends plugin {
             data2 = await res.json();
             if (res != undefined) {
                 data1 = {
-                  bookList: data2es.map((book, index) => `${index + 1}. ${book}`).join('\n')
+                  bookList: data2.map((book, index) => `${index + 1}. ${book}`).join('\n')
                 };
                 console.log(data1);
                 data2 = await data1.json();

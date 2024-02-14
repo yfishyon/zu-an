@@ -12,11 +12,11 @@ export class books extends plugin {
       priority: 500,
       rule: [
         {
-          reg: '^#下载[1-9][0-9]|#下载[0-9]*$',
+          reg: '^#下载(.*)|#下载(.*)*$',
           fnc: 'downloadbook'
         },
         {
-          reg: '^#搜书*$',
+          reg: '^#搜书(.*)*$',
           fnc: 'books'
         },
       ]

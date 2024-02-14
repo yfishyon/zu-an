@@ -54,15 +54,13 @@ export class book extends plugin {
             response = await fetch(url);
             data = await response.json();
             let res = data.books.map(book => book.replace("list/", ""));
-            console.log(data.books[0].videoId);
-            console.log(1);
-            console.log(res);
-
+            data2 = await res.json();
             if (res != undefined) {
                 data1 = {
-                  bookList: res.map((book, index) => `${index + 1}. ${book}`).join('\n')
+                  bookList: data2es.map((book, index) => `${index + 1}. ${book}`).join('\n')
                 };
                 console.log(data1);
+                data2 = await data1.json();
 
                 e.reply(data1);
                 zzss = 0;

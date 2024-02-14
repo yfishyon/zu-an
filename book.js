@@ -1,11 +1,8 @@
-
-import plugin from '../../../lib/plugins/plugin.js'
 import fetch from "node-fetch";
 
 let list = []
 let k = ""
 let name = ""
-let msg2 = []
 let res = {}
 let data1 = {}
 let data = ""
@@ -28,7 +25,7 @@ export class book extends plugin {
     ]
     });
   }
-
+}
 
 async book(e) {
     k = ""
@@ -41,26 +38,26 @@ async book(e) {
         e.reply('当前正在搜索中...请勿重复搜索')
         return
     }
+    if (e.msg == '#搜书') {
+        e.reply('请输入#搜书+书名')
+        return
+    }
     if (e.msg.includes("#搜书") & zzss == 0) {
         zzss = 1
-        msg2 = []
         list = []
         k = e.msg.replace(/#搜书/g, "").trim()
-        if (k = ""){
-            res.reply('请输入书籍')
-            return true
-        }
         name = k
         e.reply('正在搜索中...请稍后')
         console.log(k)
         try {
             url = 'http://220.167.101.235:5000/list?s=' + k
+            console.log(url)
             response = await fetch(url);
             data = await response.json()
             let res = data.books.map(book => book.replace("list/", ""));
             console.log(data.books[0].videoId)
-            res = data.books
-
+            console.log(1)
+            console.log(res)
 
             if (res != undefined) {
                 data1 = {
@@ -86,6 +83,4 @@ async book(e) {
         e.reply(url2)
     }
     return true;
-}
-
 }

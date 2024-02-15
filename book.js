@@ -10,6 +10,7 @@ let data2 = {}
 let zzss = 0;
 let url = "";
 let response = "";
+let obj = [];
 
 export class book extends plugin {
   constructor () {
@@ -53,16 +54,19 @@ export class book extends plugin {
             url = 'http://220.167.101.235:5000/list?s=' + k;
             console.log(url);
             response = await fetch(url);
-            data = await response.json();
-            let res = data.books.map(book => book.replace("list/", ""));
-            data2 = await res.json();
-            if (res != undefined) {
-                data1 = {
-                  bookList: data2.map((book, index) => `${index + 1}. ${book}`).join('\n')
-                };
-                console.log(data1);
-                data2 = await data1.json();
+            const obj = JSON.parse(response);
+            const books = obj.books;
 
+            let booklist = '';
+
+            for (let i = 0; i < books.length; i++) {
+                let book = books[i];
+                book = book.replace("list/", "");
+                booklist += `${i + 1}.${book}\n`;
+            }
+
+            console.log(booklist);
+            if (res != undefined) {
                 e.reply(data1);
                 zzss = 0;
             }

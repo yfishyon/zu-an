@@ -50,11 +50,10 @@ export class book extends plugin {
             url = 'http://220.167.101.235:5000/list?s=' + k;
             console.log(url);
             response = await fetch(url);
-            console.log(response)
-            books = response.books
-            
+            res = response.json()
+            console.log(res.books[0])
+            books = res.books
             let booklist = '';
-
             for (let i = 0; i < books.length; i++) {
                 let book = books[i];
                 book = book.replace("list/", "");

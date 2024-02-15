@@ -3,7 +3,7 @@ import fetch from "node-fetch";
 let list = [];
 let k = "";
 let name = "";
-let books = []
+let books1 = [];
 let zzss = 0;
 let url = "";
 let response = "";
@@ -51,15 +51,17 @@ export class book extends plugin {
             console.log(url);
             response = await fetch(url);
             res = response.json()
-            console.log(res.books[0])
-            books = res.books
+            let b1 = ''
+            b1 = res.books[0]
+            console.log(b1)
+            books1 = res.books
             let booklist = '';
-            for (let i = 0; i < books.length; i++) {
-                let book = books[i];
-                book = book.replace("list/", "");
-                booklist += `${i + 1}.${book}\n`;
+            for (var i = 0; i<books1.length; i++) {
+                let book1 = '';
+                var book = books1[i];
+                books1 = book.replace("list/", "");
+                booklist += `${i + 1}.${book1}\n`;
             }
-
             console.log(booklist);
             if (booklist != undefined) {
                 e.reply(booklist);
@@ -73,8 +75,8 @@ export class book extends plugin {
     }
     if (e.msg.includes("#下载")) {
         k = e.msg.replace(/#下载/g, "").trim();
-        console.log(list[Number(k) - 1]);
-        let url2 = 'https://Alist.h22.ca/NovelList/' + list[Number(k) - 1];
+        console.log(booklist[Number(k) - 1]);
+        let url2 = 'https://Alist.h22.ca/NovelList/' + booklist[Number(k) - 1];
         e.reply(url2);
     }
     return true;

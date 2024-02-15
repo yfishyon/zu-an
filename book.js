@@ -3,14 +3,10 @@ import fetch from "node-fetch";
 let list = [];
 let k = "";
 let name = "";
-let res = {};
-let data1 = {};
-let data = "";
-let data2 = {}
+let books = []
 let zzss = 0;
 let url = "";
 let response = "";
-let obj = [];
 
 export class book extends plugin {
   constructor () {
@@ -54,9 +50,9 @@ export class book extends plugin {
             url = 'http://220.167.101.235:5000/list?s=' + k;
             console.log(url);
             response = await fetch(url);
-            const obj = JSON.parse(response);
-            const books = obj.books;
-
+            console.log(response)
+            books = response.books
+            
             let booklist = '';
 
             for (let i = 0; i < books.length; i++) {
@@ -66,8 +62,8 @@ export class book extends plugin {
             }
 
             console.log(booklist);
-            if (res != undefined) {
-                e.reply(data1);
+            if (booklist != undefined) {
+                e.reply(booklist);
                 zzss = 0;
             }
         } catch (err) {
